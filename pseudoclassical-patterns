@@ -1,0 +1,20 @@
+- Psuedoclassical is so named because it mimics, to a certain point,
+	the more classical programming languages
+- Keyword new is like a constructor
+	- inserts some hidden lines of code when use new to invoke a function
+		- library.js
+			var Car = function(loc){
+				// this = Object.create(Car.prototype); -- implied not written
+				this.loc = loc; // use "this" for refactoring
+				// return this; ---- implied line insertion bc of new
+			};
+			Car.prototype.move = function(){
+				this.loc++;
+			};
+		- run.js
+			var amy = new Car(1);
+			amy.move();
+			var ben = new Car(9);
+			ben.move();
+- Constructor specifies how different instantiations will be different
+

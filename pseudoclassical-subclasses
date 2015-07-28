@@ -1,0 +1,42 @@
+- Use prototype chains to conserve memory
+	-ex: if not all cars need to move, adding move as a prototype
+		method only allocates memory when the move method is called
+
+		- library.js
+			var Car = function(loc){
+				this.loc = loc;
+			};
+
+			Car.prototype.move = function(){
+				this.loc++;
+			};
+
+			var Van = function(loc){
+
+				// Car(loc); --- is global, not right
+
+				// use this:
+
+				Car.call(this, loc); // use implicit call method
+			};
+
+			// Make Van.prototype delegate to Car.prototype	
+			Van.prototype = Object.create(Car.prototype);
+
+			// Add .constructor method because it got lost after over
+				riding the prototype - Car would be constructor otherwise
+			Van.prototype.constructor = Van;
+
+
+			// Add grab method to van prototype
+			Van.prototype.grab = function(){
+				/*...*/ 
+			};
+
+		- run.js
+			var zed = new Car(3);
+			zed.move();
+
+			var amy = new Van(9);
+			amy.move();
+			amy.grab();

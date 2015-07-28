@@ -1,0 +1,49 @@
+- library.js
+	var Car = function(loc){
+		var obj = {loc: loc};
+		obj.move = function(){
+			obj.loc++;
+		};
+		return obj;
+	};
+- run.js
+	var amy = Car(1);
+	amy.move();
+	var ben = Car(9);
+	ben.move();
+
+- Superclass used to keep reusable code concise, and subclasses for
+	customization
+		- library.js
+			// SuperClass
+			var Car = function(){
+				var obj = {loc: loc};
+				obj.move = function(){
+					obj.loc++;
+				};
+				return obj;
+			};
+
+			// Subclasses:
+
+			var Van = function(loc){
+				var obj = Car(loc);
+				obj.grab = function{ /*...*/ };
+				return obj;
+			};
+
+			var Cop = function(loc){
+				var obj = Car(loc);
+				obj.call = function(){
+					/*....*/
+				};
+				return obj;
+			};
+		- run.js
+			var amy = Van(1);
+			amy.move();
+			var ben = Van(9);
+			ben.move();
+			var cal = Cop(2);
+			cal.move();
+			cal.call();
