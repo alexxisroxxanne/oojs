@@ -1,0 +1,45 @@
+- Current version in vid:
+	- library.js 
+		var Car = function(loc){
+			var obj = {loc: loc};
+			extend(obj, Car.methods);
+			return obj;
+		};
+		Car.methods = {
+			move : function(){
+				this.loc++;
+			}
+		};
+	- run.js
+		var amy = Car(1);
+		amy.move();
+		var ben = Car(9);
+		ben.move();
+
+- Can use prototype method to create prototype for delegation
+	var Car = function(loc){
+		var obj = Object.create(Car.methods);
+		obj.loc = loc;
+		return obj;
+	};
+	Car.methods = {
+		move : function(){
+			this.loc++;
+		}
+	};
+
+- Prototypal class = class that is the basis for other classes
+		var Car = function(loc){
+			var obj = Object.create(Car.prototype);
+			obj.loc = loc;
+			return obj;
+		};
+		Car.prototype.move = function(){
+			this.loc++;
+		};
+	- difference is purely cosmetic - no effect on memory
+	- just part of language
+	- happen to have .constructor property 
+		Car.prototype.constructor 
+			- constructor is Car itself
+	
